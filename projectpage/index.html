@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="DexAC: Not All Actions Are Equal - Rethinking Conditioning for Dexterous World Model">
+  <meta name="description" content="DexAC treats action conditioning as a structured process rather than global compression, improving visual fidelity and action consistency for high-DoF egocentric dexterous world models.">
+  <meta name="keywords" content="dexterous world model, egocentric video, action conditioning, video diffusion, robot manipulation, EgoDex, EgoVerse, Cosmos-Predict, DiT, computer vision">
+  <meta name="author" content="Zizhao Yuan, Zhengtu Liang, Taowen Wang, Qiwei Liang, Yichi Wang, Yunheng Wang, Yuetong Fang, Lusong Li, Zecui Zeng, Renjing Xu">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="HKUST (Guangzhou)">
+  <meta property="og:title" content="Not All Actions Are Equal: Rethinking Conditioning for Dexterous World Model">
+  <meta property="og:description" content="DexAC treats action conditioning as a structured process rather than global compression, improving visual fidelity and action consistency for high-DoF egocentric dexterous world models.">
+  <meta property="og:url" content="https://dexac-world-model.github.io">
+  <meta property="og:image" content="https://dexac-world-model.github.io/static/images/fig6_qual_egodex.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="DexAC - Research Preview">
+  <meta property="article:published_time" content="2026-01-01T00:00:00.000Z">
+  <meta property="article:author" content="Zizhao Yuan">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="world models">
+  <meta property="article:tag" content="dexterous manipulation">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Not All Actions Are Equal: Rethinking Conditioning for Dexterous World Model">
+  <meta name="twitter:description" content="A structured, dimension-aware approach to action conditioning for high-DoF dexterous world models.">
+  <meta name="twitter:image" content="https://dexac-world-model.github.io/static/images/fig6_qual_egodex.jpg">
+  <meta name="twitter:image:alt" content="DexAC - Research Preview">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="Not All Actions Are Equal: Rethinking Conditioning for Dexterous World Model">
+  <meta name="citation_author" content="Yuan, Zizhao">
+  <meta name="citation_author" content="Liang, Zhengtu">
+  <meta name="citation_author" content="Wang, Taowen">
+  <meta name="citation_author" content="Xu, Renjing">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/YOUR_ARXIV_ID.pdf">
+
+  <meta name="theme-color" content="#E8950A">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <title>Not All Actions Are Equal: Rethinking Conditioning for Dexterous World Model</title>
+
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+
+  <!-- Critical CSS -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/dexac-theme.css">
+
+  <!-- Non-critical CSS -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Not All Actions Are Equal: Rethinking Conditioning for Dexterous World Model",
+    "description": "DexAC treats action conditioning as a structured process rather than global compression, improving visual fidelity and action consistency for high-DoF egocentric dexterous world models.",
+    "author": [
+      {"@type": "Person", "name": "Zizhao Yuan", "affiliation": {"@type": "Organization", "name": "HKUST (Guangzhou)"}},
+      {"@type": "Person", "name": "Renjing Xu", "affiliation": {"@type": "Organization", "name": "HKUST (Guangzhou)"}}
+    ],
+    "datePublished": "2026-01-01",
+    "publisher": {"@type": "Organization", "name": "arXiv"},
+    "url": "https://dexac-world-model.github.io",
+    "image": "https://dexac-world-model.github.io/static/images/fig6_qual_egodex.jpg",
+    "keywords": ["dexterous world model", "egocentric video", "action conditioning", "video diffusion"],
+    "isAccessibleForFree": true,
+    "about": [
+      {"@type": "Thing", "name": "World Models"},
+      {"@type": "Thing", "name": "Dexterous Manipulation"}
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<!-- Scroll to Top Button -->
+<button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<main id="main-content">
+  <!-- Title / authors -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Not All Actions Are Equal:<br>Rethinking Conditioning for Dexterous World Model</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="#" target="_blank">Zizhao Yuan</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="#" target="_blank">Zhengtu Liang</a><sup>2</sup>,</span>
+              <span class="author-block"><a href="#" target="_blank">Taowen Wang</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="#" target="_blank">Qiwei Liang</a><sup>1,2</sup>,</span>
+              <span class="author-block"><a href="#" target="_blank">Yichi Wang</a><sup>3</sup></span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="#" target="_blank">Yunheng Wang</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="#" target="_blank">Yuetong Fang</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="#" target="_blank">Lusong Li</a><sup>4</sup>,</span>
+              <span class="author-block"><a href="#" target="_blank">Zecui Zeng</a><sup>4</sup>,</span>
+              <span class="author-block"><a href="#" target="_blank">Renjing Xu</a><sup>1,†</sup></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>The Hong Kong University of Science and Technology (Guangzhou) &nbsp;<br>&nbsp;<sup>2</sup>Shenzhen University &nbsp;&nbsp;<sup>3</sup>Beijing University of Technology &nbsp;&nbsp;<sup>4</sup>JD Explore Academy</span>
+              <span class="eql-cntrb"><small><br><sup>†</sup>Corresponding author</small></span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/YOUR_ARXIV_ID" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="ai ai-arxiv"></i></span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/YOUR_ARXIV_ID.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>PDF</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/dexac-world-model" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code (Coming Soon)</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End title / authors -->
+
+  <!-- Teaser -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <div class="figure-card" style="padding:0; overflow:hidden;">
+          <img src="static/images/teaser.png" alt="Qualitative comparison of action-conditioned video prediction on EgoDex" loading="lazy" style="width:100%; display:block;">
+        </div>
+        <h2 class="subtitle has-text-centered" style="margin-top:20px;">
+          DexAC predicts temporally coherent egocentric video of 57-DoF dexterous hand interactions on EgoDex and EgoVerse, by treating action conditioning as a <strong>structured</strong> process instead of compressing every action dimension into one global embedding.
+        </h2>
+      </div>
+    </div>
+  </section>
+  <!-- End teaser -->
+
+  <!-- Abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-five-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div id="abstract-box">
+            <div class="content has-text-justified">
+              <p>
+                Recent advances in action-conditioned world models show promising progress in modeling complex interactions and forecasting future states under diverse action sequences. While these models are often driven by stronger visual representations and model capacity, action conditioning itself remains underexplored. Most existing approaches compress entire action sequence into a single representation, which works well for low-DoF control but becomes less reliable in high-DoF scenarios.We observe that
+high-DoF dexterous actions are inherently heterogeneous, spanning multiple orders of magnitude, where
+large-scale motions coexist with subtle but important signals. When uniformly aggregated, optimization
+exhibits an imbalance across action components, which hinders the modeling of fine-grained effects
+and affects action fidelity. We therefore propose <strong>DexAC</strong>, which treats action conditioning as a
+structured process rather than global compression. DexAC preserves dimension-level semantics via
+action tokenization and aligns action signals with visual dynamics through local refinement and global
+modulation. To address the limited high-level semantic grounding in existing world models, we further
+introduce a semantic branch that provides rich object-scene priors, which enables world model to capture
+dynamic visual details while supporting high-DoF action-conditioned video prediction. Experiments on
+EgoDex and EgoVerse show that combining the semantic branch with DexAC significantly improves
+FID, FVD and PCK, demonstrating gains in visual-temporal realism and action-following consistency.
+We further verify that DexAC extends to other backbones, showing the scalability of our structured
+action-conditioning design. These results suggest that scaling world models to high-DoF control requires
+both structured heterogeneous action modeling and semantic grounding.
+              </p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End abstract -->
+
+  <!-- Motivation -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Why Vanilla Action Conditioning Breaks at High DoF</h2>
+      <div class="content method-text">
+        <p>
+          Low-DoF gripper actions (6 dimensions) are neatly bounded: translation and rotation live at a comparable, narrow scale, so a global MLP can aggregate them without issue. Dexterous human hands are a different story&nbsp;&mdash; large wrist and camera motions coexist with finger articulations that are five orders of magnitude smaller.
+        </p>
+      </div>
+
+      <div class="figure-card">
+        <img src="static/images/fig2_action_magnitude.jpg" alt="Empirical comparison of action magnitude distributions between low-DoF and high-DoF action spaces" loading="lazy" style="width:100%;">
+        <div class="figure-caption">
+          <strong>Figure 1. Empirical comparison of action magnitude distributions.</strong> (a) In the low-DoF (6-DoF) action space, translation and rotation dimensions maintain bounded variances at the 10⁻² scale, so gradients stay balanced across dimensions. (b) In the high-DoF (57-DoF) dexterous action space, a severe 10⁵ scale gap exists between macro-movements (wrist/camera) and micro-movements (fingers). Finger articulations appear almost flat purely because of this scale mismatch, not because they carry less information.
+        </div>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat-cell">
+          <div class="stat-label">Wrist / camera scale</div>
+          <div class="stat-value">10⁰</div>
+        </div>
+        <div class="stat-cell hl">
+          <div class="stat-label">Finger articulation scale</div>
+          <div class="stat-value">10⁻⁵</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Scale gap</div>
+          <div class="stat-value" style="color:#c0392b;">10⁵×</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">Total action dimensions</div>
+          <div class="stat-value">57</div>
+        </div>
+      </div>
+
+      <div class="content method-text">
+        <p>
+          When all 57 action dimensions are flattened into a single embedding, the high-variance wrist and camera dimensions dominate the gradient signal and effectively silence the finger articulations&nbsp;&mdash; the very signals needed for dexterous manipulation. This heterogeneous semantic collapse shows up directly in training: a vanilla global-conditioning baseline struggles to converge in the 57-DoF regime, while DexAC's structured conditioning stabilizes training and reaches a markedly lower loss.
+        </p>
+      </div>
+
+      <!-- <div class="figure-card">
+        <img src="static/images/fig3_training_loss.png" alt="Training loss comparison across different action conditioning architectures" loading="lazy" style="width:100%;">
+        <div class="figure-caption">
+          <strong>Figure 2. Training loss comparison.</strong> The vanilla global conditioning baseline struggles to converge in the high-DoF (57-DoF) space compared to a 6-DoF baseline, while DexAC with semantic condition effectively stabilizes training and achieves a significantly lower loss.
+        </div>
+      </div> -->
+    </div>
+  </section>
+  <!-- End motivation -->
+
+  <!-- Method -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Method: DexAC-WM</h2>
+      <div class="content method-text">
+        <p>
+          DexAC is built on the Cosmos-Predict2.5 backbone and replaces global compression with a structured pipeline that keeps each action dimension semantically independent throughout conditioning. Three components work together: a structured action representation, a unified local-global conditioning module, and a semantic condition branch with dual cross-attention.
+        </p>
+      </div>
+
+      <div class="insight-grid">
+        <div class="insight-card">
+          <div class="num">1</div>
+          <h4>Structured Action Representation</h4>
+          <p>
+            Rather than flattening the full action sequence into one vector, each action dimension is independently normalized and temporally tokenized into a structured set of (B, N, C) tokens, where each token summarizes the full temporal evolution of one action dimension. This preserves dimension-level semantics that a single global embedding would wash out.
+          </p>
+        </div>
+        <div class="insight-card">
+          <div class="num">2</div>
+          <h4>Unified Local-Global Conditioning</h4>
+          <p>
+            A <em>local action refinement</em> branch injects fine-grained action tokens directly into the latent noise via cross-attention, letting every latent token query the structured action representation. A <em>global action modulation</em> branch summarizes the action tokens through a learnable query and injects the result through Adaptive LayerNorm, keeping overall motion temporally coherent.
+          </p>
+        </div>
+        <div class="insight-card">
+          <div class="num">3</div>
+          <h4>Semantic Condition with Dual Cross-Attention</h4>
+          <p>
+            DINOv3-L dense spatial features and VLM text embeddings are concatenated and jointly injected into the latent space through cross-attention, with latent tokens as queries. DINO features give image-aligned spatial cues for hand-object geometry, while text embeddings provide compact, high-level intent &mdash; together improving spatio-temporal consistency.
+          </p>
+        </div>
+      </div>
+
+      <div class="figure-card" style="margin-top:32px;">
+        <img src="static/images/fig5_semantic_condition.png" alt="Structure of the semantic condition module with dual cross-attention" loading="lazy" style="max-width:600px; margin:0 auto; display:block;">
+        <div class="figure-caption" style="text-align:center;">
+          <strong>Figure 3.  Details of our backbone architecture.
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End method -->
+
+  <!-- Quantitative results -->
+  <section class="section" id="results">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
+      <div class="content method-text">
+        <p>
+          We evaluate on EgoDex (829 hours, 194 manipulation tasks, 500 distinct objects) and EgoVerse (1,362 hours, 1,965 tasks, 240 scenes, in-the-wild). All Cosmos-based models are trained on 8 NVIDIA H200 GPUs with a 2B action-conditioned backbone. Metrics: PSNR / SSIM for pixel and structural quality, LPIPS for perceptual similarity, FID / FVD for spatial and temporal realism, and PCK@10 / PCK@20 for fine-grained and overall action consistency.
+        </p>
+      </div>
+
+      <div class="table-title">Table 1 &middot; EgoDex</div>
+      <div class="results-table-wrap">
+        <table class="results-table">
+          <thead>
+            <tr><th>Baseline</th><th>PSNR↑</th><th>SSIM↑</th><th>LPIPS↓</th><th>FID↓</th><th>FVD↓</th><th>PCK@10↑</th><th>PCK@20↑</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Wan2.1-Fun-1.3B-Control</td><td>21.89</td><td class="best">0.89</td><td>0.34</td><td>194.11</td><td>1532.49</td><td>20.35</td><td>36.89</td></tr>
+            <tr><td>Wan2.2-Fun-5B-Control</td><td>22.97</td><td>0.73</td><td>0.31</td><td>167.98</td><td>1434.19</td><td>21.51</td><td>36.84</td></tr>
+            <tr><td>IRASim</td><td>22.12</td><td>0.80</td><td>0.20</td><td>153.81</td><td>615.21</td><td>27.76</td><td>44.84</td></tr>
+            <tr><td>IRASim + DexAC</td><td>23.11</td><td>0.81</td><td class="best">0.16</td><td>142.76</td><td>565.30</td><td>33.94</td><td>51.37</td></tr>
+            <tr><td>Cosmos-Predict2.5-2B (Base)</td><td>25.02</td><td>0.80</td><td>0.25</td><td>114.51</td><td>352.19</td><td>31.07</td><td>58.33</td></tr>
+            <tr><td>Base + DINOv3</td><td class="best">25.74</td><td>0.81</td><td>0.23</td><td>110.25</td><td>977.68</td><td>33.86</td><td>60.78</td></tr>
+            <tr><td>Base + DexAC</td><td>25.14</td><td>0.80</td><td>0.25</td><td>114.26</td><td>349.29</td><td class="best">34.15</td><td class="best">61.41</td></tr>
+            <tr class="ours-row"><td>Ours (Base + DINOv3 + DexAC)</td><td>25.13</td><td>0.80</td><td>0.24</td><td class="best">106.67</td><td class="best">284.40</td><td>32.70</td><td>60.59</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">Quantitative comparison of advanced action-conditioned world models on EgoDex.
+Higher PSNR and SSIM indicate better reconstruction quality, while lower LPIPS, FID and FVD indicate better perceptual and temporal quality. Higher PCK represents better action consistency. The best and second-best AVG are highlighted in bold and underlined, respectively.</p>
+
+      <div class="table-title">Table 2 &middot; EgoVerse</div>
+      <div class="results-table-wrap">
+        <table class="results-table">
+          <thead>
+            <tr><th>Baseline</th><th>PSNR↑</th><th>SSIM↑</th><th>LPIPS↓</th><th>FID↓</th><th>FVD↓</th><th>PCK@10↑</th><th>PCK@20↑</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Wan2.1-Fun-1.3B-Control</td><td>22.43</td><td>0.74</td><td>0.37</td><td>176.99</td><td>1370.18</td><td>20.17</td><td>33.95</td></tr>
+            <tr><td>Wan2.2-Fun-5B-Control</td><td>21.93</td><td class="best">0.79</td><td>0.41</td><td>151.97</td><td>1203.89</td><td>25.74</td><td>41.32</td></tr>
+            <tr><td>IRASim</td><td>22.59</td><td>0.71</td><td class="best">0.35</td><td>229.74</td><td>989.21</td><td>41.68</td><td>57.90</td></tr>
+            <tr><td>IRASim + DexAC</td><td class="best">23.66</td><td>0.75</td><td>0.39</td><td>224.77</td><td>963.25</td><td class="best">44.68</td><td>58.12</td></tr>
+            <tr><td>Cosmos-Predict2.5-2B (Base)</td><td>21.45</td><td>0.63</td><td>0.39</td><td>151.62</td><td>955.74</td><td>24.58</td><td>41.16</td></tr>
+            <tr><td>Base + DINOv3</td><td>21.09</td><td>0.62</td><td>0.41</td><td>162.13</td><td>857.82</td><td>26.45</td><td>41.73</td></tr>
+            <tr><td>Base + DexAC</td><td>21.37</td><td>0.63</td><td>0.40</td><td>152.10</td><td>919.56</td><td>24.24</td><td>42.72</td></tr>
+            <tr class="ours-row"><td>Ours (Base + DINOv3 + DexAC)</td><td>21.67</td><td>0.64</td><td>0.38</td><td class="best">139.60</td><td class="best">830.03</td><td>40.62</td><td class="best">60.51</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">Quantitative comparison of advanced action-conditioned world models on EgoVerse.
+Higher PSNR and SSIM indicate better reconstruction quality, while lower LPIPS, FID and FVD indicate better perceptual and temporal quality. Higher PCK represents better action consistency. The best and second-best AVG are highlighted in bold and underlined, respectively.</p>
+
+      <div class="table-title">Table 3 &middot; Ablation on structured action conditioning components (EgoDex)</div>
+      <div class="results-table-wrap">
+        <table class="results-table">
+          <thead>
+            <tr><th>Metric</th><th>w/o Local Attention</th><th>w/o Global Attention</th><th>MLP Action Embed</th><th>Full DexAC</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>PSNR↑</td><td>25.12</td><td>24.82</td><td>25.02</td><td class="best">25.13</td></tr>
+            <tr><td>SSIM↑</td><td>0.80</td><td>0.79</td><td>0.80</td><td class="best">0.80</td></tr>
+            <tr><td>LPIPS↓</td><td>0.25</td><td>0.26</td><td>0.25</td><td class="best">0.24</td></tr>
+            <tr><td>FID↓</td><td>114.51</td><td>116.31</td><td>114.51</td><td class="best">106.67</td></tr>
+            <tr><td>FVD↓</td><td>377.03</td><td>419.90</td><td>352.19</td><td class="best">284.40</td></tr>
+            <tr><td>PCK@10↑</td><td>30.48</td><td>30.81</td><td>31.07</td><td class="best">32.70</td></tr>
+            <tr class="ours-row"><td>PCK@20↑</td><td>58.50</td><td>54.21</td><td>58.33</td><td class="best">60.59</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- <p class="table-note">Removing global modulation causes the largest single drop across nearly every metric, confirming that coherent global motion intent is essential&nbsp;&mdash; and that both local and global branches are necessary for high-DoF action conditioning.</p> -->
+
+      <div class="table-title">Table 4 &middot; Per-action-family PCK evaluation (EgoDex)</div>
+      <div class="results-table-wrap">
+        <table class="results-table">
+          <thead>
+            <tr><th>Method</th><th>Wrist PCK@10</th><th>Wrist PCK@20</th><th>Finger PCK@10</th><th>Finger PCK@20</th><th>Head PCK@10</th><th>Head PCK@20</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>MLP Action Embed</td><td>7.03</td><td>31.80</td><td>7.03</td><td>22.51</td><td>3.89</td><td>14.27</td></tr>
+            <tr><td>w/o Global Attention</td><td class="best">88.83</td><td class="best">93.76</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+            <tr><td>w/o Local Attention</td><td>48.88</td><td>72.60</td><td>29.03</td><td>53.87</td><td>35.75</td><td>56.03</td></tr>
+            <tr><td>DexAC</td><td>33.04</td><td>58.42</td><td class="best">33.04</td><td class="best">58.42</td><td>40.00</td><td>60.99</td></tr>
+            <tr class="ours-row"><td>DexAC + DINOv3</td><td>54.65</td><td>76.09</td><td>29.68</td><td>54.44</td><td class="best">41.21</td><td class="best">65.51</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- <p class="table-note">Removing global attention overfits to the dominant wrist motion (PCK@10 of 88.83) while finger and head consistency collapse to zero&nbsp;&mdash; a clear demonstration of the heterogeneous-action imbalance that DexAC is designed to fix. DexAC + DINOv3 gives the best family-balanced accuracy overall.</p> -->
+    </div>
+  </section>
+  <!-- End quantitative results -->
+
+  <!-- Qualitative results -->
+  <section class="section hero is-light" id="qualitative">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
+      <div class="content method-text">
+        <p>
+          Across both datasets, the Cosmos base model produces reasonable reconstructions but suffers from temporal inconsistencies such as drifting hand positions and unstable object interactions. Adding DINOv3 alone improves visual sharpness but introduces flickering and inconsistent motion trajectories. DexAC alone generates more temporally stable sequences with hand trajectories that align more closely with intended actions. The full model combines both properties, yielding sharper yet stable outputs with reduced motion jitter and more accurate long-horizon interaction dynamics.
+        </p>
+      </div>
+
+      <div class="legend-row">
+        <span class="legend-chip" style="border-color:#c0392b; color:#c0392b;">Motion Tracking Failure</span>
+        <span class="legend-chip" style="border-color:#2d8a52; color:#2d8a52;">Excessive Range of Motion</span>
+        <span class="legend-chip" style="border-color:#c89b1c; color:#a07f17;">Object Disappearance</span>
+        <span class="legend-chip" style="border-color:#9b59b6; color:#9b59b6;">Hand Distortion</span>
+      </div>
+
+      <div class="figure-card" style="margin-top:20px;">
+        <img src="static/images/fig6_qual_egodex.png" alt="Qualitative comparison of action-conditioned video prediction on EgoDex across four manipulation tasks" loading="lazy" style="width:100%;">
+        <div class="figure-caption">
+          <strong>Figure 4. Qualitative comparison on EgoDex.</strong> From top to bottom in each block: Ground Truth (GT), our full method (Ours), DexAC only, DINOv3 only, and the Cosmos Base model, across four manipulation tasks (Insert Remove USB, Clean Surface, Scoop Dump Ice, Vertical Pick Place). Baselines repeatedly show motion tracking failures and hand distortion that DexAC corrects.
+        </div>
+      </div>
+
+      <div class="figure-card">
+        <img src="static/images/fig7_qual_egoverse.png" alt="Qualitative comparison of action-conditioned video prediction on EgoVerse across four manipulation tasks" loading="lazy" style="width:100%;">
+        <div class="figure-caption">
+          <strong>Figure 5. Qualitative comparison on EgoVerse.</strong> Same row ordering as above, on four in-the-wild tasks (Fold Clothes in Domain, Cup on Saucer in Domain, Cup on Saucer, Fold Clothes). DexAC's structured conditioning remains robust even as scene diversity increases.
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End qualitative results -->
+
+  <!-- Analysis -->
+  <section class="section" id="analysis">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Why Structured Conditioning Helps</h2>
+      <div class="content method-text">
+        <p>
+          To verify that subtle action dimensions are effectively utilized, we extract the action-conditioned embedding before AdaLN modulation and compute channel-wise activation magnitudes, forming a feature heatmap across four settings: without local attention, without global attention, DexAC, and our full model (DINOv3 + DexAC).
+        </p>
+      </div>
+
+      <div class="figure-card">
+        <img src="static/images/fig8_heatmap.png" alt="Action heatmap in the AdaLN embedding space across four ablation settings" loading="lazy" style="width:100%;">
+        <div class="figure-caption">
+          <strong>Figure 6. Action heatmap in the AdaLN embedding space.</strong> The baseline (w/o Local Attention) shows highly imbalanced activations dominated by a few channels, indicating that subtle action signals are suppressed. Removing global modulation leads to scattered, unstable patterns. DexAC produces a more balanced, structured distribution, and adding DINOv3 features makes activations more concentrated and semantically aligned&nbsp;&mdash; stronger action-visual coupling.
+        </div>
+      </div>
+
+      <div class="figure-card">
+        <img src="static/images/fig9_pca.png" alt="PCA projection of action tokens for finger, wrist, and head action families" loading="lazy" style="width:100%;">
+        <div class="figure-caption">
+          <strong>PCA of action token representations.</strong> Across w/o Local Attention, w/o Global Attention, and DexAC, finger, wrist, and head action families form increasingly distinguishable clusters, indicating better preservation of dimension-wise action structure.
+        </div>
+      </div>
+
+      <div class="figure-card">
+        <img src="static/images/fig10_tsne.png" alt="t-SNE projection of action tokens for finger, wrist, and head action families" loading="lazy" style="width:100%;">
+        <div class="figure-caption">
+          <strong>t-SNE of action token representations.</strong> The same three settings visualized with t-SNE, corroborating the PCA result: DexAC's structured tokenization keeps action families more separable in embedding space.
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End analysis -->
+
+  <!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <pre id="bibtex-code"><code>@article{yuan2026dexac,
+  title   = {Not All Actions Are Equal: Rethinking Conditioning for Dexterous World Model},
+  author  = {Yuan, Zizhao and Liang, Zhengtu and Wang, Taowen and Liang, Qiwei and Wang, Yichi
+             and Wang, Yunheng and Fang, Yuetong and Li, Lusong and Zeng, Zecui and Xu, Renjing},
+  journal = {arXiv preprint},
+  year    = {2026},
+  url     = {https://dexac-world-model.github.io}
+}</code></pre>
+    </div>
+  </section>
+  <!--End BibTex citation -->
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>
+              © 2026 DexAC-WM Project Team. All Rights Reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+function copyBibTeX() {
+  const text = document.querySelector('#bibtex-code code').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-bibtex-btn .copy-text');
+    const original = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = original, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
