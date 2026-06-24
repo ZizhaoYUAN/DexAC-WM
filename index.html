@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Primary Meta Tags -->
   <meta name="title" content="DexAC: Not All Actions Are Equal - Rethinking Conditioning for Dexterous World Model">
   <meta name="description" content="DexAC treats action conditioning as a structured process rather than global compression, improving visual fidelity and action consistency for high-DoF egocentric dexterous world models.">
   <meta name="keywords" content="dexterous world model, egocentric video, action conditioning, video diffusion, robot manipulation, EgoDex, EgoVerse, Cosmos-Predict, DiT, computer vision">
@@ -12,7 +11,6 @@
   <meta name="robots" content="index, follow">
   <meta name="language" content="English">
 
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="HKUST (Guangzhou)">
   <meta property="og:title" content="Not All Actions Are Equal: Rethinking Conditioning for Dexterous World Model">
@@ -28,14 +26,12 @@
   <meta property="article:tag" content="world models">
   <meta property="article:tag" content="dexterous manipulation">
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Not All Actions Are Equal: Rethinking Conditioning for Dexterous World Model">
   <meta name="twitter:description" content="A structured, dimension-aware approach to action conditioning for high-DoF dexterous world models.">
   <meta name="twitter:image" content="https://dexac-world-model.github.io/static/images/fig6_qual_egodex.jpg">
   <meta name="twitter:image:alt" content="DexAC - Research Preview">
 
-  <!-- Academic/Research Specific -->
   <meta name="citation_title" content="Not All Actions Are Equal: Rethinking Conditioning for Dexterous World Model">
   <meta name="citation_author" content="Yuan, Zizhao">
   <meta name="citation_author" content="Liang, Zhengtu">
@@ -56,12 +52,10 @@
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link rel="apple-touch-icon" href="static/images/favicon.ico">
 
-  <!-- Critical CSS -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
   <link rel="stylesheet" href="static/css/dexac-theme.css">
 
-  <!-- Non-critical CSS -->
   <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -106,13 +100,11 @@
 </head>
 <body>
 
-<!-- Scroll to Top Button -->
 <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
   <i class="fas fa-chevron-up"></i>
 </button>
 
 <main id="main-content">
-  <!-- Title / authors -->
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
@@ -166,9 +158,6 @@
       </div>
     </div>
   </section>
-  <!-- End title / authors -->
-
-  <!-- Teaser -->
   <section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="hero-body">
@@ -181,9 +170,6 @@
       </div>
     </div>
   </section>
-  <!-- End teaser -->
-
-  <!-- Abstract -->
   <section class="section hero is-light">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
@@ -192,17 +178,11 @@
           <div id="abstract-box">
             <div class="content has-text-justified">
               <p>
-                Recent advances in action-conditioned world models show promising progress in modeling complex interactions and forecasting future states under diverse action sequences. While these models are often driven by stronger visual representations and model capacity, action conditioning itself remains underexplored. Most existing approaches compress entire action sequence into a single representation, which works well for low-DoF control but becomes less reliable in high-DoF scenarios.
-              </p>
-              <p>
-                We observe that
+                Recent advances in action-conditioned world models show promising progress in modeling complex interactions and forecasting future states under diverse action sequences. While these models are often driven by stronger visual representations and model capacity, action conditioning itself remains underexplored. Most existing approaches compress entire action sequence into a single representation, which works well for low-DoF control but becomes less reliable in high-DoF scenarios.We observe that
 high-DoF dexterous actions are inherently heterogeneous, spanning multiple orders of magnitude, where
 large-scale motions coexist with subtle but important signals. When uniformly aggregated, optimization
 exhibits an imbalance across action components, which hinders the modeling of fine-grained effects
-and affects action fidelity. 
-              </p>
-              <p>
-                We therefore propose <strong>DexAC</strong>, which treats action conditioning as a
+and affects action fidelity. We therefore propose <strong>DexAC</strong>, which treats action conditioning as a
 structured process rather than global compression. DexAC preserves dimension-level semantics via
 action tokenization and aligns action signals with visual dynamics through local refinement and global
 modulation. To address the limited high-level semantic grounding in existing world models, we further
@@ -214,15 +194,13 @@ We further verify that DexAC extends to other backbones, showing the scalability
 action-conditioning design. These results suggest that scaling world models to high-DoF control requires
 both structured heterogeneous action modeling and semantic grounding.
               </p>
+              
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- End abstract -->
-
-  <!-- Motivation -->
   <section class="section">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Why Vanilla Action Conditioning Breaks at High DoF</h2>
@@ -235,7 +213,9 @@ both structured heterogeneous action modeling and semantic grounding.
       <div class="figure-card">
         <img src="static/images/fig2_action_magnitude.jpg" alt="Empirical comparison of action magnitude distributions between low-DoF and high-DoF action spaces" loading="lazy" style="width:100%;">
         <div class="figure-caption">
-          <strong>Figure 1. Empirical comparison of action magnitude distributions.</strong> (a) In the low-DoF (6-DoF) action space, translation and rotation dimensions maintain bounded variances at the 10⁻² scale, so gradients stay balanced across dimensions. (b) In the high-DoF (57-DoF) dexterous action space, a severe 10⁵ scale gap exists between macro-movements (wrist/camera) and micro-movements (fingers). Finger articulations appear almost flat purely because of this scale mismatch, not because they carry less information.
+          <strong>Empirical comparison of action magnitude distributions.(a) Low-DoF action space (6-DoF).The translation and rotation dimensions maintain bounded variances spanning the 10⁻² scale, effectively preventing gradient domination.
+           (b) High-DoF dexterous action space (57-DoF). The severe10⁵ scale gap between macro-movements (wrist/camera) and micro-movements (fingers) creates critical optimization bottlenecks. Note that the finger articulations (30 DoF) appear almost flat due to their 10⁵ scale compared to the 10⁰ macro-movements.
+           Empirical comparison of action magnitude distributions.
         </div>
       </div>
 
@@ -264,17 +244,8 @@ both structured heterogeneous action modeling and semantic grounding.
         </p>
       </div>
 
-      <!-- <div class="figure-card">
-        <img src="static/images/fig3_training_loss.png" alt="Training loss comparison across different action conditioning architectures" loading="lazy" style="width:100%;">
-        <div class="figure-caption">
-          <strong>Figure 2. Training loss comparison.</strong> The vanilla global conditioning baseline struggles to converge in the high-DoF (57-DoF) space compared to a 6-DoF baseline, while DexAC with semantic condition effectively stabilizes training and achieves a significantly lower loss.
-        </div>
-      </div> -->
-    </div>
+      </div>
   </section>
-  <!-- End motivation -->
-
-  <!-- Method -->
   <section class="section hero is-light">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Method: DexAC-WM</h2>
@@ -308,17 +279,14 @@ both structured heterogeneous action modeling and semantic grounding.
         </div>
       </div>
 
-      <div class="figure-card" style="margin-top:32px;">
-        <img src="static/images/fig5_semantic_condition.png" alt="Structure of the semantic condition module with dual cross-attention" loading="lazy" style="max-width:600px; margin:0 auto; display:block;">
-        <div class="figure-caption" style="text-align:center;">
-          <strong>Figure 3.  Details of our backbone architecture.
+      <div class="figure-card" >
+        <img src="static/images/fig5_semantic_condition.png" alt="Structure of the semantic condition module with dual cross-attention" loading="lazy" style="width:100%;">
+        <div class="figure-caption" >
+          <strong>  Schematic overview of the proposed DexAC-WM. DexAC is designed to explicitly capture both precise local dexterity and globally coherent motion in high-DoF action regimes, while semantic condition provides rich scene- and object-based representations for DexAC-WM. (b) provides details of the DiT backbone architecture, which consists of 28 blocks, and illustrates how the structured action condition is injected into each block through Adaptive Layer Normalization (AdaLN). (c) presents strcuture of DexAC to preserve dimension-wise struction action tokenizer with local and global attention refinement for adaptive action injection.
         </div>
       </div>
     </div>
   </section>
-  <!-- End method -->
-
-  <!-- Quantitative results -->
   <section class="section" id="results">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
@@ -387,8 +355,6 @@ Higher PSNR and SSIM indicate better reconstruction quality, while lower LPIPS, 
           </tbody>
         </table>
       </div>
-      <!-- <p class="table-note">Removing global modulation causes the largest single drop across nearly every metric, confirming that coherent global motion intent is essential&nbsp;&mdash; and that both local and global branches are necessary for high-DoF action conditioning.</p> -->
-
       <div class="table-title">Table 4 &middot; Per-action-family PCK evaluation (EgoDex)</div>
       <div class="results-table-wrap">
         <table class="results-table">
@@ -404,12 +370,8 @@ Higher PSNR and SSIM indicate better reconstruction quality, while lower LPIPS, 
           </tbody>
         </table>
       </div>
-      <!-- <p class="table-note">Removing global attention overfits to the dominant wrist motion (PCK@10 of 88.83) while finger and head consistency collapse to zero&nbsp;&mdash; a clear demonstration of the heterogeneous-action imbalance that DexAC is designed to fix. DexAC + DINOv3 gives the best family-balanced accuracy overall.</p> -->
-    </div>
+      </div>
   </section>
-  <!-- End quantitative results -->
-
-  <!-- Qualitative results -->
   <section class="section hero is-light" id="qualitative">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
@@ -419,7 +381,96 @@ Higher PSNR and SSIM indicate better reconstruction quality, while lower LPIPS, 
         </p>
       </div>
 
-      <div class="legend-row">
+<h3 class="title is-4 has-text-centered" style="margin-top: 40px;">Open-Loop Rollouts</h3>
+      <p class="has-text-centered" style="margin-bottom: 30px;">
+        Given the initial state and a dexterous action sequence, DexAC predicts future latent states autoregressively. Latent states are decoded into images for visualization.
+      </p>
+
+      <div class="columns is-mobile is-centered has-text-centered" style="margin-bottom: 1rem;">
+        <div class="column is-half" style="padding-right: 1.5rem;">
+          <div class="columns is-mobile">
+            <div class="column is-6"><p><strong>Ours</strong></p></div>
+            <div class="column is-6"><p><strong>GT</strong></p></div>
+          </div>
+        </div>
+        <div class="column is-half" style="padding-left: 1.5rem;">
+          <div class="columns is-mobile">
+            <div class="column is-6"><p><strong>Ours</strong></p></div>
+            <div class="column is-6"><p><strong>GT</strong></p></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="columns is-mobile is-centered" style="margin-bottom: 3rem;">
+        <div class="column is-half" style="padding-right: 1.5rem;">
+          <div class="columns is-mobile">
+            <div class="column is-6" style="padding: 0.25rem;">
+              <img src="static/gif/assemble_disassemble_furniture_bench_chair_ours_72frames.gif" alt="Ours Bench Chair" style="width: 100%; border-radius: 4px;">
+            </div>
+            <div class="column is-6" style="padding: 0.25rem;">
+              <img src="static/gif/assemble_disassemble_furniture_bench_chair_gt_72frames.gif" alt="GT Bench Chair" style="width: 100%; border-radius: 4px;">
+            </div>
+          </div>
+        </div>
+        <div class="column is-half" style="padding-left: 1.5rem;">
+          <div class="columns is-mobile">
+            <div class="column is-6" style="padding: 0.25rem;">
+              <img src="static/gif/basic_pick_place_ours_72frames.gif" alt="Ours Pick Place" style="width: 100%; border-radius: 4px;">
+            </div>
+            <div class="column is-6" style="padding: 0.25rem;">
+              <img src="static/gif/basic_pick_place_gt_72frames.gif" alt="GT Pick Place" style="width: 100%; border-radius: 4px;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-mobile is-centered" style="margin-bottom: 3rem;">
+        <div class="column is-half" style="padding-right: 1.5rem;">
+          <div class="columns is-mobile">
+            <div class="column is-6" style="padding: 0.25rem;">
+              <img src="static/gif/dry_hands_ours_72frames.gif" alt="Ours Dry Hands" style="width: 100%; border-radius: 4px;">
+            </div>
+            <div class="column is-6" style="padding: 0.25rem;">
+              <img src="static/gif/dry_hands_gt_72frames.gif" alt="GT Dry Hands" style="width: 100%; border-radius: 4px;">
+            </div>
+          </div>
+        </div>
+        <div class="column is-half" style="padding-left: 1.5rem;">
+          <div class="columns is-mobile">
+            <div class="column is-6" style="padding: 0.25rem;">
+              <img src="static/gif/open_close_insert_remove_case_ours_72frames.gif" alt="Ours Open Close Insert Remove Case" style="width: 100%; border-radius: 4px;">
+            </div>
+            <div class="column is-6" style="padding: 0.25rem;">
+              <img src="static/gif/open_close_insert_remove_case_gt_72frames.gif" alt="GT Open Close Insert Remove Case" style="width: 100%; border-radius: 4px;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-mobile is-centered" style="margin-bottom: 1rem;">
+        <div class="column is-half" style="padding-right: 1.5rem;">
+          <div class="columns is-mobile">
+            <div class="column is-6" style="padding: 0.25rem;">
+              <img src="static/gif/stack_ours_60frames.gif" alt="Ours Stack" style="width: 100%; border-radius: 4px;">
+            </div>
+            <div class="column is-6" style="padding: 0.25rem;">
+              <img src="static/gif/stack_gt_60frames.gif" alt="GT Stack" style="width: 100%; border-radius: 4px;">
+            </div>
+          </div>
+        </div>
+        <div class="column is-half" style="padding-left: 1.5rem;">
+          <div class="columns is-mobile">
+            <div class="column is-6" style="padding: 0.25rem;">
+              <img src="static/gif/wipe_kitchen_surfaces_ours_60frames.gif" alt="Ours Wipe Kitchen Surfaces" style="width: 100%; border-radius: 4px;">
+            </div>
+            <div class="column is-6" style="padding: 0.25rem;">
+              <img src="static/gif/wipe_kitchen_surfaces_gt_60frames.gif" alt="GT Wipe Kitchen Surfaces" style="width: 100%; border-radius: 4px;">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="legend-row" style="margin-top: 40px;">
         <span class="legend-chip" style="border-color:#c0392b; color:#c0392b;">Motion Tracking Failure</span>
         <span class="legend-chip" style="border-color:#2d8a52; color:#2d8a52;">Excessive Range of Motion</span>
         <span class="legend-chip" style="border-color:#c89b1c; color:#a07f17;">Object Disappearance</span>
@@ -441,9 +492,6 @@ Higher PSNR and SSIM indicate better reconstruction quality, while lower LPIPS, 
       </div>
     </div>
   </section>
-  <!-- End qualitative results -->
-
-  <!-- Analysis -->
   <section class="section" id="analysis">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Why Structured Conditioning Helps</h2>
@@ -456,28 +504,32 @@ Higher PSNR and SSIM indicate better reconstruction quality, while lower LPIPS, 
       <div class="figure-card">
         <img src="static/images/fig8_heatmap.png" alt="Action heatmap in the AdaLN embedding space across four ablation settings" loading="lazy" style="width:100%;">
         <div class="figure-caption">
-          <strong>Figure 6. Action heatmap in the AdaLN embedding space.</strong> The baseline (w/o Local Attention) shows highly imbalanced activations dominated by a few channels, indicating that subtle action signals are suppressed. Removing global modulation leads to scattered, unstable patterns. DexAC produces a more balanced, structured distribution, and adding DINOv3 features makes activations more concentrated and semantically aligned&nbsp;&mdash; stronger action-visual coupling.
+          <strong> Action heatmap in the AdaLN embedding space.</strong>  As shown in Figure, the x-axis represents feature channels and
+the y-axis denotes forward index, with color indicating activation strength. We compare four settings: (1)
+without Local Attention, (2) without Global Attention, (3) DexAC, and (4) Ours (DINO+DexAC). 
         </div>
       </div>
 
       <div class="figure-card">
         <img src="static/images/fig9_pca.png" alt="PCA projection of action tokens for finger, wrist, and head action families" loading="lazy" style="width:100%;">
         <div class="figure-caption">
-          <strong>PCA of action token representations.</strong> Across w/o Local Attention, w/o Global Attention, and DexAC, finger, wrist, and head action families form increasingly distinguishable clusters, indicating better preservation of dimension-wise action structure.
+          <strong>The PCA results of (a) EgoVerse and (b) EgoDex tasks.</strong>  The PCA results in Figure  reveal different distribution patterns
+across action groups. For example, finger-related samples exhibit both compact clusters and locally scattered
+points, suggesting that the tokenizer captures common finger-motion structures while remaining sensitive to
+task-dependent hand dynamics. 
         </div>
       </div>
 
       <div class="figure-card">
         <img src="static/images/fig10_tsne.png" alt="t-SNE projection of action tokens for finger, wrist, and head action families" loading="lazy" style="width:100%;">
         <div class="figure-caption">
-          <strong>t-SNE of action token representations.</strong> The same three settings visualized with t-SNE, corroborating the PCA result: DexAC's structured tokenization keeps action families more separable in embedding space.
+          <strong>The t-SNE results of (a) EgoVerse and (b) EgoDex tasks.</strong> The t-SNE visualization in Figure further shows that action features from
+different tasks form distinct but partially clustered distributions, indicating that the proposed tokenizer can
+separate both local and global action patterns across different motion groups.
         </div>
       </div>
     </div>
   </section>
-  <!-- End analysis -->
-
-  <!--BibTex citation -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <div class="bibtex-header">
@@ -497,8 +549,6 @@ Higher PSNR and SSIM indicate better reconstruction quality, while lower LPIPS, 
 }</code></pre>
     </div>
   </section>
-  <!--End BibTex citation -->
-
   <footer class="footer">
     <div class="container">
       <div class="columns is-centered">
