@@ -1,0 +1,295 @@
+/* ============================================================
+   DexAC custom theme — overrides the template's blue palette
+   with the paper's amber/orange accent, on a light background.
+   Loaded after index.css so these rules win.
+   ============================================================ */
+
+:root {
+  --primary-color: #E8950A;
+  --primary-hover: #c67d05;
+  --secondary-color: #6b6358;
+  --accent-color: #F5C75A;
+  --text-primary: #1a1a1a;
+  --text-secondary: #5a5a5a;
+  --text-light: #948c7e;
+  --background-primary: #ffffff;
+  --background-secondary: #fdf8ee;
+  --background-accent: #fdf3dc;
+  --border-color: #e8e0cc;
+  --gradient-primary: linear-gradient(135deg, #F5C75A 0%, #E8950A 100%);
+}
+
+body {
+  background-color: #fffdf9;
+}
+
+/* Title block */
+.publication-title {
+  font-weight: 800 !important;
+  letter-spacing: -0.02em;
+  color: #1a1a1a !important;
+}
+
+.publication-authors a {
+  color: var(--primary-color) !important;
+  font-weight: 500;
+}
+.publication-authors a:hover {
+  color: var(--primary-hover) !important;
+}
+
+.eql-cntrb, .publication-authors {
+  color: var(--text-secondary) !important;
+}
+
+/* Buttons */
+.publication-links .button.is-dark,
+.external-link.button.is-dark {
+  background-color: #1a1a1a !important;
+  border: none;
+}
+.publication-links .button.is-dark:hover,
+.external-link.button.is-dark:hover {
+  background-color: var(--primary-color) !important;
+}
+
+/* Section headers */
+.title.is-3, .title.is-2 {
+  color: #1a1a1a !important;
+  font-weight: 700 !important;
+}
+
+.title.is-3::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--primary-color);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.hero.is-light {
+  background-color: var(--background-secondary) !important;
+}
+
+/* Abstract box - rounded card with amber top border, matching the paper's abstract box */
+#abstract-box {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 36px 40px;
+  position: relative;
+  text-align: left;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.03);
+}
+#abstract-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+  border-radius: 14px 14px 0 0;
+}
+
+/* Figure cards */
+.figure-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 28px;
+}
+.figure-card img {
+  border-radius: 6px;
+}
+.figure-caption {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 16px;
+  line-height: 1.7;
+  text-align: left;
+}
+.figure-caption strong {
+  color: var(--text-primary);
+}
+
+/* Insight / contribution cards */
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+  text-align: left;
+}
+.insight-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 26px 24px;
+}
+.insight-card .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  background: var(--background-accent);
+  color: var(--primary-hover);
+  font-weight: 700;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+.insight-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.insight-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Stat strip */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px;
+  background: var(--border-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 28px 0;
+}
+.stat-cell {
+  background: #ffffff;
+  padding: 20px 14px;
+  text-align: center;
+}
+.stat-cell .stat-label {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.stat-cell .stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.stat-cell.hl .stat-value { color: var(--primary-color); }
+
+/* Results tables */
+.results-table-wrap {
+  overflow-x: auto;
+  margin-top: 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+table.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  background: #ffffff;
+}
+table.results-table thead tr {
+  background: var(--background-secondary);
+}
+table.results-table th {
+  padding: 11px 12px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+table.results-table th:first-child { text-align: left; }
+table.results-table td {
+  padding: 9px 12px;
+  text-align: center;
+  border-bottom: 1px solid #f1ece0;
+  color: var(--text-secondary);
+}
+table.results-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+table.results-table tr:last-child td { border-bottom: none; }
+table.results-table .best { font-weight: 700; color: var(--primary-hover); }
+table.results-table tr.ours-row td { background: var(--background-accent); }
+table.results-table tr.ours-row td:first-child { color: var(--primary-hover); font-weight: 700; }
+.table-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 28px 0 4px;
+  text-align: left;
+}
+.table-note {
+  font-size: 12.5px;
+  color: var(--text-light);
+  margin-top: 10px;
+  text-align: left;
+  font-style: italic;
+}
+
+/* Legend chips for qualitative figures */
+.legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 14px;
+}
+.legend-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1.5px solid;
+  font-weight: 500;
+}
+
+/* Method content text alignment */
+.method-text {
+  text-align: left;
+}
+
+/* BibTeX */
+.bibtex-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#bibtex-code {
+  background: var(--background-secondary) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-secondary);
+}
+.copy-bibtex-btn {
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.copy-bibtex-btn:hover { background: var(--primary-color); }
+
+/* Hide the "more works" floating widget and scroll-to-top to keep things minimal & on-brand */
+.more-works-container { display: none !important; }
