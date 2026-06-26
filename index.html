@@ -177,22 +177,8 @@
           <h2 class="title is-3">Abstract</h2>
           <div id="abstract-box">
             <div class="content has-text-justified">
-              <p>
-                Recent advances in action-conditioned world models show promising progress in modeling complex interactions and forecasting future states under diverse action sequences. While these models are often driven by stronger visual representations and model capacity, action conditioning itself remains underexplored. Most existing approaches compress entire action sequence into a single representation, which works well for low-DoF control but becomes less reliable in high-DoF scenarios.We observe that
-high-DoF dexterous actions are inherently heterogeneous, spanning multiple orders of magnitude, where
-large-scale motions coexist with subtle but important signals. When uniformly aggregated, optimization
-exhibits an imbalance across action components, which hinders the modeling of fine-grained effects
-and affects action fidelity. We therefore propose <strong>DexAC</strong>, which treats action conditioning as a
-structured process rather than global compression. DexAC preserves dimension-level semantics via
-action tokenization and aligns action signals with visual dynamics through local refinement and global
-modulation. To address the limited high-level semantic grounding in existing world models, we further
-introduce a semantic branch that provides rich object-scene priors, which enables world model to capture
-dynamic visual details while supporting high-DoF action-conditioned video prediction. Experiments on
-EgoDex and EgoVerse show that combining the semantic branch with DexAC significantly improves
-FID, FVD and PCK, demonstrating gains in visual-temporal realism and action-following consistency.
-We further verify that DexAC extends to other backbones, showing the scalability of our structured
-action-conditioning design. These results suggest that scaling world models to high-DoF control requires
-both structured heterogeneous action modeling and semantic grounding.
+              <p>Recent advances in action-conditioned world models show promising progress in modeling complex interactions and forecasting future states under diverse action sequences. While these models are often driven by stronger visual representations and model capacity, action conditioning itself remains underexplored. Most existing approaches compress the entire action sequence into a single representation, which works well for low-DoF control but becomes less reliable in high-DoF scenarios. We observe that high-DoF dexterous actions are inherently heterogeneous, spanning multiple orders of magnitude, where large-scale motions coexist with subtle but important signals. When uniformly aggregated, optimization exhibits an imbalance across action components, which hinders the modeling of fine-grained effects and affects action fidelity. We therefore propose  <strong>DexAC-WM</strong>, which treats action conditioning as a structured process rather than global compression. DexAC preserves dimension-level semantics via action tokenization and aligns action signals with visual dynamics through local refinement and global modulation. To address the limited high-level semantic grounding in existing world models, we further introduce a semantic branch that provides rich object-scene priors, which enables world model to capture dynamic visual details while supporting high-DoF action-conditioned video prediction. Experiments on EgoDex and EgoVerse show that combining the semantic branch with DexAC significantly improves FID, FVD, and PCK, demonstrating gains in visual-temporal realism and action-following consistency. We further verify that DexAC extends to other backbones, showing the scalability of our structured action-conditioning design. These results suggest that scaling world models to high-DoF control requires both structured action modeling and semantic grounding.
+               
               </p>
               
             </div>
@@ -251,7 +237,7 @@ both structured heterogeneous action modeling and semantic grounding.
       <h2 class="title is-3 has-text-centered">Method: DexAC-WM</h2>
       <div class="content method-text">
         <p>
-          DexAC is built on the Cosmos-Predict2.5 backbone and replaces global compression with a structured pipeline that keeps each action dimension semantically independent throughout conditioning. Three components work together: a structured action representation, a unified local-global conditioning module, and a semantic condition branch with dual cross-attention.
+          DexAC-WM is built on the Cosmos-Predict2.5 backbone and replaces global compression with a structured pipeline that keeps each action dimension semantically independent throughout conditioning. Three components work together: a structured action representation, a unified local-global conditioning module, and a semantic condition branch with dual cross-attention.
         </p>
       </div>
 
